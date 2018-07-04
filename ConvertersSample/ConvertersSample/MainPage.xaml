@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ConvertersSample"
+             x:Class="ConvertersSample.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MeterToKiloConverter x:Key="MeterToKiloConverter" />
+            <local:StringToColorConverter x:Key="StringToColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <!-- Place new controls here -->
+        <StackLayout Orientation="Horizontal">
+            <Entry x:Name="meter"
+               Text=""
+               Placeholder="enter number in meters"
+               VerticalOptions="CenterAndExpand" />
+
+            <Label VerticalOptions="CenterAndExpand"
+                   Text="{Binding Source={x:Reference meter},
+                                    Path=Text,
+                                    Converter={StaticResource MeterToKiloConverter}}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Entry x:Name="weather"
+               Text=""
+               Placeholder="enter number weather condition"
+               VerticalOptions="CenterAndExpand" />
+
+            <BoxView VerticalOptions="EndAndExpand"
+                   BackgroundColor="{Binding Source={x:Reference weather},
+                                    Path=Text,
+                                    Converter={StaticResource StringToColorConverter}}"/>
+        </StackLayout>
+
+
+    </StackLayout>
+
+</ContentPage>
